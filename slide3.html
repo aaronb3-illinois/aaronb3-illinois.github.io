@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Home Run Explosion - Post-Steriods Era</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage full-screen backgrounds." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+	<link rel="stylesheet" type="text/css" href="css/project.css" />
+
+	<script src="https://cdnjs.com/libraries/fullPage.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+
+	<style>
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+		background-size: cover;
+	}
+
+	.slide{
+		background-size: cover;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		/* background-image: url(misc/generic-02-bw.jpg); */
+	}
+
+	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(misc/generic-02-bw.jpg);
+		/* background: #fff; */
+		padding: 1% 0 0 0;
+	}
+
+	#section0 h1{
+		top: 50%;
+		/* transform: translateY(-50%); */
+		position: relative;
+	}
+
+	.bar {
+		fill: #DEDEDE;
+	}
+
+	/* .bar:hover {
+		fill: orange;
+	} */
+
+	.st_bar {
+		fill: #DEDEDE;
+		/* display: none; */
+	}
+
+	/* .st_bar:hover {
+		fill: orange; */
+		/* display: none; */
+	/* } */
+
+	.post_bar {
+		fill: steelblue;
+		/* display: none; */
+	}
+
+	.post_bar:hover {
+		fill: orange;
+		/* display: none; */
+	}
+
+	.stat_bar {
+		fill: #aa0000;
+		display: none;
+	}
+
+	.stat_bar:hover {
+		fill: orange;
+		display: none;
+	}
+
+	</style>
+
+</head>
+<body>
+
+<div id="fullpage">
+	<div class="section " id="section0">
+			<div class="slide" id="slide1">
+
+					<div style="font-family: sans-serif; font-size: 50px; line-height: 70px; font-weight: bold; color:#1a1a1a;">
+						"Post-Steriods" Era
+					</div>
+
+					<div style="height: 50px; font-size: 33.5px; color:#404040;">
+						2006-2014
+					</div>
+
+					<div style="width: 900px; display: table; margin: auto;">
+							<div style="display: table-row">
+									<div id="narrative-sides"> <a id="link" href="slide2.html"><</a> </div>
+									<div style="width:10px; display: table-cell;"></div>
+									<div id="narrative-center">
+										The rampant use of performance enhancing drugs (PEDs) during the
+										Steroids Era was finally brought to light, and eventually triggered Congressional
+										hearings on the subject. In order to avoid government involvement,
+										baseball agreed to take meaningful steps towards
+										PED testing. During this period,
+										many players are suspended for PED use.
+										As the years go on, more substances are banned. Notice the
+										decline in home runs? Click on an orange circle to learn more.
+									</div>
+									<div style="width:10px; display: table-cell;"></div>
+									<div id="narrative-sides"> <a id="link" href="slide4.html">></a> </div>
+							</div>
+					</div>
+
+					<svg width="960" height="500"></svg>
+
+					<script>
+
+					var expansionList = [
+						{key: "2007", value: "Barry Bonds sets the all-time career home run record with 756."},
+						{key: "2008", value: "More stringent drug testing is introduced including testing amateur players and increased suspensions, including the potential for a lifetime ban from baseball."},
+						{key: "2011", value: "Barry Bonds is found guilty of obstruction of justice regarding statements made regarding his accused steroid use."},
+						{key: "2014", value: "Alex Rodriguez, one of the most prolific home run hitters during the Steroids Era is suspended for an entire year, costing him $25M in salary."},
+					];
+
+					var svg = d3.select("svg"),
+					    margin = {top: 20, right: 0, bottom: 30, left: 40},
+					    width = +svg.attr("width") - margin.left - margin.right,
+					    height = +svg.attr("height") - margin.top - margin.bottom,
+							drawerWidth = svg.attr("width") - 100,
+							drawerHeight = 50 + margin.top;
+
+					var start_year = +1961,
+							end_year = +2017,
+							st_start = +1994,
+							st_end = +2005,
+							post_start = +2006,
+							post_end = +2014,
+							stat_start = +2015,
+							stat_end = +2017;
+
+					var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+					    y = d3.scaleLinear().rangeRound([height, 0]);
+
+					var g = svg.append("g")
+							.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+					var drawer_canvas = svg.append("g");
+
+					var drawer = drawer_canvas.append("rect")
+							.attr("class", "drawer")
+							.attr("id", "drawer")
+							.attr("x", svg.attr("width") - margin.right)
+							.attr("y", 0)
+							.attr("rx", 8)
+							.attr("ry", 8)
+							.attr("height", drawerHeight)
+							.attr("width", drawerWidth)
+							.style("display", "block");
+
+					var drawer_text = drawer_canvas.append("text")
+							.attr("class", "drawer-text")
+							.attr("id", "drawer")
+							.attr("x", svg.attr("width") - margin.right)
+							.attr("y", 30)
+							.style("color", "white")
+							.style("display", "none");
+
+					var tooltip = d3.select("body")
+								.append("div")
+								.attr("class", "toolTip")
+								.style("display", "none");
+
+					var eventBanner = d3.select("body")
+								.append("div")
+								.attr("class", "eventBanner")
+								.style("display", "none");
+
+
+
+					/* ---------------------------------------------------------
+					   LOAD DATA
+						 ---------------------------------------------------------*/
+
+					d3.csv("data/hr.csv", function(d) {
+							d.year = +d.year;
+							d.date = +d.date;
+						  d.value = +d.value;
+							// if (d.year >= start_year && d.year <= end_year) {
+									return d;
+							// } else {
+							// 	return null;
+							// }
+					}, function(error, data) {
+					  if (error) throw error;
+
+
+
+						/* ---------------------------------------------------------
+						   AXES
+							 ---------------------------------------------------------*/
+
+					  x.domain(data.map(function(d) { return d.year; }));
+					  // y.domain([1000, d3.max(data, function(d) { return d.value; })]);
+						y.domain([1000, 6000]);
+
+						g.append("g")
+								.attr("class", "axis axis--x")
+								.attr("transform", "translate(0," + height + ")")
+								// .attr("transform", "rotate(-90)")
+								.call(d3.axisBottom(x).tickFormat(d3.format("02")))
+								.selectAll("text")
+								.style("text-anchor", "end")
+		            .attr("dx", "-.8em")
+		            .attr("dy", ".15em")
+		            .attr("transform", function(d) {
+                		return "rotate(-65)"
+                });
+
+						g.append("g")
+								.attr("class", "axis axis--y")
+								.call(d3.axisLeft(y))
+							.append("text")
+								// .attr("transform", "rotate(-90)")
+								.attr("transform", "translate(200,20)")
+								.attr("y", 6)
+								.attr("dy", "0.71em")
+								.attr("text-anchor", "end")
+								.style("fill", "black")
+								.style("font-size", "36px")
+								.style("font-family", "sans-serif")
+								.style("opacity", "0.2")
+								.text("Home Runs");
+
+
+
+						/* ---------------------------------------------------------
+						   DRAW STUFF
+							 ---------------------------------------------------------*/
+
+						barDraw(data);
+						DrawEventCircles();
+						// fade(".stat_bar", 2000, 500);
+						// fade(".post_bar", 2000, 500);
+						// fade(".st_bar", 2000, 500);
+						// fade(".eventCircle", 2000, 1000);
+						// closeDrawer();
+						// openDrawer(year);
+
+
+
+						/* ---------------------------------------------------------
+							 MOUSE ACTIONS
+							 ---------------------------------------------------------*/
+
+						 var eventCircles = g.selectAll(".eventCircle")
+ 							.on("mousedown", function() {
+ 								year = this.id;
+ 								if (d3.event.pageX > (width * 0.80)) {
+ 									 pointX = d3.event.pageX - 300;
+ 								 } else if (d3.event.pageX < (width * 0.25)) {
+  									 pointX = d3.event.pageX;
+ 								} else {
+ 									 pointX = d3.event.pageX - 100;
+ 								}
+
+ 								eventBanner
+ 									.style("left", pointX + "px")
+ 									.style("top", d3.event.pageY - 100 + "px")
+ 									.html(function() {
+ 										 return eventInfo(year);
+ 									})
+ 									.style("display", "inline-block");
+ 							})
+
+						d3.select(".eventBanner")
+							.on("mousedown", function() {
+									eventBanner
+										.style("display", "none");
+							});
+
+						drawer_canvas.selectAll("#drawer")
+							.on("mousedown", function() {
+									closeDrawer();
+							});
+
+						g.selectAll(".bar, .st_bar, .post_bar, .stat_bar")
+							.on("mousemove", function(d){
+									tooltip
+										.style("left", d3.event.pageX - 50 + "px")
+										.style("top", d3.event.pageY - 70 + "px")
+										.style("display", "inline-block")
+										.html("Year: " + (d.year) + "<br>Home Runs: " + (d3.format(",")(d.value)));
+							})
+							.on("mouseout", function(d){ tooltip.style("display", "none");});
+
+
+
+						/* ---------------------------------------------------------
+							 HELPER FUNCTIONS
+							 ---------------------------------------------------------*/
+
+						function barDraw(data) {
+								g.selectAll(".bar")
+								 .data(data)
+								 .enter().append("rect")
+									 .attr("class", function(d) {
+										 	if (d.year >= st_start && d.year <= st_end) {
+												 return "st_bar";
+									 	  } else if (d.year >= post_start && d.year <= post_end) {
+												 return "post_bar";
+											} else if (d.year >= stat_start && d.year <= stat_end) {
+												 return "stat_bar";
+											} else {
+												 return "bar";
+											}
+									 })
+									 .attr("id", function(d) {
+											 return "event" + d.year;
+									 })
+									 .attr("x", function(d) { return x(d.year); })
+									 .attr("y", function(d) { return y(d.value); })
+									 .attr("width", x.bandwidth())
+									 .attr("height", function(d) { return height - y(d.value); })
+									 .style("opacity", 0)
+									 .transition()
+									 .duration(2000)
+									 .style("opacity", 1);
+
+						}
+
+						function DrawEventCircles() {
+							for (var i = 0; i < expansionList.length; i++) {
+									if (expansionList[i].key >= start_year &&
+											expansionList[i].key <= end_year) {
+											var addCircles = g.select("#event" + expansionList[i].key);
+											g.append("circle")
+											 .attr("class", "eventCircle")
+											 .attr("id", function(d) {
+												 return "eventCircle" + expansionList[i].key;
+											 })
+											 .attr("r", x.bandwidth()/2)
+											 // .attr("cx", x(expansionList[i].key.toString().substr(-2)) + x.bandwidth()/2)
+											 .attr("cx", x(expansionList[i].key) + x.bandwidth()/2)
+											 .attr("cy", addCircles.node().attributes.getNamedItem("y").value)
+											 .attr("text", expansionList[i].value)
+											 .style("opacity", 1);
+
+									};
+								}
+						}
+
+						function fade(element, delay, duration) {
+								var item = g.selectAll(element)
+								 .transition()
+								 .delay(delay)
+								 .duration(duration)
+								 .attr("height", 0);
+
+								if (element == ".eventCircle") {
+									 item.attr("cy", height);
+									 remove(item);
+
+								} else {
+									 item.attr("y", height);
+								}
+
+						}
+
+						function remove(element) {
+								 element.attr("display", "none");
+						}
+
+						function openDrawer(id) {
+
+							drawer
+							  .style("display", "inline-block")
+								.transition()
+								.duration(1000)
+								.attr("x", svg.attr("width") - drawerWidth - 25);
+
+							drawer_text
+								.transition()
+								.duration(1000)
+							  .style("display", "inline-block")
+								.attr("x", svg.attr("width") - drawerWidth - 25)
+								.attr("y", 30)
+								.text(function() {
+										return eventInfo(id);
+								});
+
+							eventBanner
+								.style("display", "inline-block")
+								.html("THIS IS A TEST");
+						}
+
+						function closeDrawer() {
+							drawer
+								.transition()
+								.duration(500)
+								.attr("x", svg.attr("width"));
+
+							drawer_text
+								.transition()
+								.duration(500)
+								.attr("x", svg.attr("width"));
+						}
+
+					});
+
+					function eventInfo(id) {
+						  var year = id.toString().substr(-4);
+							var eventDetails = "";
+
+							for (var i = 0; i < expansionList.length; i++) {
+									if (expansionList[i].key == year) {
+											eventDetails = expansionList[i].value;
+									}
+							}
+
+							var html = "<div class='foo'>" + year + "</div>" +
+												 "<div>" + eventDetails + "</div><br/>" +
+												 "<div style='text-decoration: underline;'>Close</div>";
+
+							return html;
+					}
+
+					</script>
+
+		</div> <!-- end slide2 -->
+	</div> <!-- end section0 -->
+
+</div>
+
+<div>
+	<a id="footer" href="about.html">About this visualization</a>
+</div>
+
+<script type="text/javascript" src="src/fullpage.js"></script>
+<script type="text/javascript" src="src/examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false
+    });
+</script>
+
+</body>
+</html>

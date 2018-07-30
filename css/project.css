@@ -1,0 +1,263 @@
+/* Style for our header texts
+* --------------------------------------- */
+h1{
+  font-size: 3em;
+  font-family: 'Raleway', sans-serif;
+  /* color: #fff; */
+  color: black;
+  /* margin:0; */
+  padding:0;
+}
+
+/* Backgrounds will cover all the section
+* --------------------------------------- */
+.section{
+  text-align:center;
+  background-size: cover;
+}
+
+.slide{
+  background-size: cover;
+}
+
+/* Defining each sectino background and styles
+* --------------------------------------- */
+#section0{
+  /* background-image: url(misc/generic-02-bw.jpg); */
+}
+
+/*Adding background for the slides
+* --------------------------------------- */
+#slide1{
+  background-image: url(generic-02-bw.jpg);
+  /* background: #fff; */
+  padding: 1% 0 0 0;
+}
+
+#section0 h1{
+  top: 50%;
+  /* transform: translateY(-50%); */
+  position: relative;
+}
+
+#footer{
+  position:fixed;
+  height: 30px;
+  display:block;
+  width: 230px;
+  /* background: #333; */
+  background: #0099e6;
+  opacity: 0.8;
+  z-index:9;
+  text-align:center;
+  color: #f2f2f2;
+  padding: 10px 0 0 0;
+  bottom:0px;
+  border-top-right-radius: 8px;
+  text-decoration: none;
+}
+
+#footer:hover {
+  opacity: 1;
+  background-color: #0099e6;
+}
+
+.bodyText {
+  font-size: 13.5px;
+  font-family: 'Raleway', sans-serif;
+  color:#404040;
+  /* text-align: justify; */
+}
+
+.axis--x path {
+  display: none;
+}
+
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 60px;
+  height: auto;
+  /* background: none repeat scroll 0 0 #ffffff; */
+  background: none repeat scroll 0 0 #000;
+  /* border: 1px solid #6F257F; */
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #fff;
+}
+
+.eventBanner {
+  position: absolute;
+  display: none;
+  /* min-width: 60px; */
+  /* max-width: 200px; */
+  width: 300px;
+  height: auto;
+  /* background: none repeat scroll 0 0 #ffffff; */
+  background: none repeat scroll 0 0 #000;
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #fff;
+}
+
+.foo {
+  font-size: 20px;
+}
+
+.title {
+  color: purple;
+  font-size: 20px;
+}
+
+.eventCircle {
+  fill: orange;
+  stroke: black;
+  stroke-width: 3;
+}
+
+.drawer {
+  background: #0099e6;
+  /* fill: #ffffff; */
+  opacity: 0.8;
+  z-index:9;
+  text-align:center;
+  color: #fff;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  text-decoration: none;
+}
+
+.drawer-text {
+  fill: #ffffff;
+  word-wrap: normal;
+  padding: 10px;
+}
+
+svg {
+  /* background-color: white; */
+}
+
+#narrative-sides {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  /* margin: auto; */
+  text-align: justify;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 30px;
+  width: 30px;
+  height: 60px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+}
+
+#narrative-sides a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* #narrative-sides a:hover {
+  color: #fff;
+  text-decoration: none;
+} */
+
+#narrative-sides:hover {
+  background-color: orange;
+  color: #fff;
+}
+
+
+/* a {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:link {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: none;
+} */
+/*
+#link a {
+  color: #000000;
+  text-decoration: none;
+}
+
+#link a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+#link a:link {
+  color: #000000;
+  text-decoration: none;
+}
+
+#link a:hover {
+  color: #ffffff;
+  text-decoration: none;
+} */
+
+#narrative-center {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  width: 820px;
+  height: 60px;
+  /* margin: auto; */
+  text-align: justify;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#essay {
+  /* border: 1px solid #ddd; */
+  /* background-color: #ddd; */
+  width: 820px;
+  /* margin: auto; */
+  text-align: justify;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#helper {
+  position:absolute;
+  height: 50px;
+  display: none;
+  width: 200px;
+  background: orange;
+  border: 5px black solid;
+  opacity: 0.8;
+  z-index:9;
+  text-align:left;
+  color: #000;
+  padding: 10px;
+  bottom: 35%;
+  right: 20%;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Home Run Explosion</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage full-screen backgrounds." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+	<link rel="stylesheet" type="text/css" href="css/project.css" />
+
+	<script src="https://cdnjs.com/libraries/fullPage.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+
+	<style>
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+		background-size: cover;
+	}
+
+	.slide{
+		background-size: cover;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		/* background-image: url(misc/generic-02-bw.jpg); */
+	}
+
+	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(misc/generic-02-bw.jpg);
+		/* background: #fff; */
+		padding: 1% 0 0 0;
+	}
+
+	#section0 h1{
+		top: 50%;
+		/* transform: translateY(-50%); */
+		position: relative;
+	}
+
+
+  </style>
+
+</head>
+<body>
+
+<div id="fullpage">
+	<div class="section " id="section0">
+			<div class="slide" id="slide1">
+
+					<div style="font-family: sans-serif; font-size: 50px; line-height: 70px; font-weight: bold; color:#1a1a1a;">
+						About this Visualization
+					</div>
+
+					<div style="width: 900px; display: table; margin: auto;">
+              <div style="display: table-row">
+                  <div id="essay" style="font-size: 16px; padding-top: 20px;">
+                    An <b>Interactive slideshow</b> prepared by Aaron Bromagem for CS 498 Data Visualization (Summer 2018).
+									</div>
+							</div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <b>Summary</b><br/>
+                    This slideshow allows the viewer to be guided through various
+                    time periods in baseball, highlighting important events along the way.
+                    Each slide builds upon the last; the final slide
+                    provides a complete history, encompassing all previous slides.
+                    Important events are noted in yellow circles positioned atop
+                    columns and display event details when clicked on. The
+                    left and right arrows above each chart allow the viewer
+                    to navigate between previous and next slides.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <b>Scenes</b><br/>
+                    Each scene is represented
+                    by one chart on one slide. The first slide, "Expansion Era"
+                    shows a time period
+                    in baseball where there was significant team expansion
+                    which resulted in more Major League Players therefore an
+                    upward trend in the number of home runs hit each year. The next
+                    slide, "Steroids Era", illustrates an important time in
+                    baseball where there was explosive growth in home runs aided
+                    by the use of steroids and other performance enhancing drugs. Red
+                    bars were used to highlight this period as it clearly shows the
+                    significant difference between prior years. The third slide,
+                    “Post-Steroids Era”, helps the viewer understand how
+                    stringent drug tests and aggressive suspensions caused
+                    players to begin abandoning performance enhancing drugs. The
+                    fourth slide, “Statcast Era”, again shows a historic increase
+                    in home runs due to the Statcast system which tracks every
+                    movement on the baseball field and allows players to
+                    analyze all facets of their swings. This data illustrates
+                    that players can alter their swings to hit the ball
+                    harder which is leading to more home runs. The final slide
+                    provides a complete view of all time periods, allowing the
+                    viewer to explore each year and any events associated.
+                    Each slide uses a baseball background image for
+                    stylistic effect.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <b>Annotations</b><br/>
+                    Upon loading the first slide ("Expansion Era"), an
+                    annotation box is visible instructing the viewer to
+                    interact with the slide by clicking on the orange circles.
+                    This annotation fades out after 5 seconds to make
+                    room for the next slide. This is done by using D3's
+                    <span style="font-family: courier;">transition</span>
+                    feature on the opacity of the <span style="font-family: courier;">DIV</span>
+                    element.
+                    Each orange circle is placed above certain bars in each chart
+                    and provides information about important events when clicked on.
+                    The color of the circles clearly contrasts
+                    with the bar color, making them easy to recognize.
+                    When clicked on, a text box appears above the circles with event text.
+                    The viewer can close
+                    the box by clicking anywhere in the box. A “Close” link is also provided
+                    to help dismiss the box. Annotations are cleared between slides.
+                    This annotation system uses D3’s
+                    <span style="font-family: courier;">.on(“mousedown”)</span>
+                    event, triggering the CSS <span style="font-family: courier;">display</span>
+                    feature from <span style="font-family: courier;">none</span>
+                    to <span style="font-family: courier;">inline-block</span>.
+                    Viewers can also hover over bars to see a tooltip with the year and
+                    number of home runs. Tooltips are controlled using the X, Y
+                    coordinates of the mouse pointer and D3's
+                    <span style="font-family: courier;">.on(“mousemove”)</span> feature.
+                    Bars also change color when hovering over them for
+                    additional delineation. At the top of each slide is a quick
+                    narrative about what the slide is trying to convey.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <b>Parameters</b><br/>
+                    Parameters are used in to control the scenes. For example,
+                    each slide represents a time span which in turn controls which bars
+                    and events to display. This is done using a start/end year parameter
+                    that is passed through each slide. In addition, these parameters
+                    are also responsible for choosing which event circles to display.
+                    Notice on each slide how the bar color and event visibility
+                    change.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <b>Triggers</b><br/>
+                    Navigation arrows on each slide trigger the previous and next slides,
+                    which in turn fires a D3 transition call to fade in the
+                    bar and event elements for that time period. Also notice
+                    that the navigation arrows change color when hovered over
+                    allowing the viewer to clearly see that they are a clickable
+                    action. As noted above,
+                    annotation and tooltip triggers using mouse events are also
+                    incorporated. Furthermore,
+                    depending on which slide is being viewed, certain triggers are
+                    fired. For example,
+                    the Steroids and Statcast Era bar colors are changed based
+                    on their given time periods.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    This slideshow is a final project for the Data Visualization
+                    course offered by the University of Illinois at Urbana-Champaign.
+                    Charts were created using D3.js version 4.
+                    <a href="http://alvarotrigo.com/fullpage">Fullpage.js</a>
+                    by Alvaro Trigo was used under GNU license for the slide format. Home run
+                    data was provided by <a href="http://bbref.com">Baseball Reference</a>.
+                  </div>
+              </div>
+              <div style="display: table-row">
+                  <div id="essay">
+                    <a style="font-size: 18px; margin: auto;" href="index.html">Restart Slideshow</a>
+                  </div>
+              </div>
+					</div>
+
+		</div> <!-- end slide2 -->
+	</div> <!-- end section0 -->
+
+</div>
+
+<script type="text/javascript" src="src/fullpage.js"></script>
+<script type="text/javascript" src="src/examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false
+    });
+</script>
+
+</body>
+</html>

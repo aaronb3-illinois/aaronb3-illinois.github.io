@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>FullScreen Backgrounds - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage full-screen backgrounds." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+
+	<script src="https://cdnjs.com/libraries/fullPage.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 3em;
+		font-family: sans-serif;
+		/* color: #fff; */
+		color: black;
+		/* margin:0; */
+		padding:0;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	.section{
+		background-size: cover;
+	}
+
+	.slide{
+		background-size: cover;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		/* background-image: url(misc/35999399-baseball-wallpapers.jpg); */
+	}
+	#section0 h1{
+		top: 50%;
+		/* transform: translateY(-50%); */
+		position: relative;
+	}
+	#section1{
+		/* background-image: url(https://raw.githubusercontent.com/alvarotrigo/fullPage.js/master/examples/imgs/bg3.jpg); */
+		/* padding: 6% 0 0 0; */
+	}
+	/* #section3{
+		background-image: url(https://raw.githubusercontent.com/alvarotrigo/fullPage.js/master/examples/imgs/bg4.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section3 h1{
+		color: #000;
+	} */
+
+	#footer{
+	  position:fixed;
+	  height: 30px;
+	  display:block;
+	  width: 230px;
+	  /* background: #333; */
+		background: #0099e6;
+	  opacity: 0.8;
+	  z-index:9;
+	  text-align:center;
+	  color: #f2f2f2;
+	  padding: 10px 0 0 0;
+	  bottom:0px;
+	  border-top-right-radius: 8px;
+	  text-decoration: none;
+	}
+
+	#footer:hover {
+	  opacity: 1;
+	  background-color: #0099e6;
+	}
+
+	#startbutton{
+		position:fixed;
+		height: 40px;
+		display:block;
+		width: 300px;
+		background: #FF0000;
+		/* background: #0099e6; */
+		/* background: #0099e6; */
+		opacity: 0.8;
+		z-index:9;
+		text-align:center;
+		color: #f2f2f2;
+		padding: 10px 0 0 0;
+		bottom: 50%;
+		left: 39%;
+		border-radius: 8px;
+		font-size: 24px;
+		text-decoration: none;
+	}
+
+	.bodyText {
+	  font-size: 13.5px;
+	  font-family: 'Raleway', sans-serif;
+	  color:#404040;
+	  /* text-align: justify; */
+	}
+
+ 	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(misc/stadium.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide2{
+		/* background-image: url(https://raw.githubusercontent.com/alvarotrigo/fullPage.js/master/examples/imgs/bg5.jpg); */
+		background: #eee;
+		padding: 1% 0 0 0;
+	}
+
+	</style>
+
+</head>
+<body>
+
+<div id="fullpage">
+	<div class="section " id="section0">
+			<div class="slide" id="slide1">
+
+				<div>
+						<div style="font-family: sans-serif; font-size: 50px; padding-top: 10px; font-weight: bold; color:#1a1a1a;">
+							Baseball's Home Run Explosion
+						</div>
+
+						<div style="font-family: sans-serif; font-size: 40px; padding: 10px 0 10px 0; font-weight: bold; color:#1a1a1a;">
+							1961-Present
+						</div>
+
+						<div style="font-size: 33.5px; -webkit-margin-before: 0.2em; -webkit-margin-after: 0.2em; color:#404040;">
+							Expansion, Steroids and Statcast Eras
+						</div>
+
+						<div>
+							<a id="startbutton" href="slide1.html">Start Slideshow</a>
+						</div>
+
+						<!-- <div style="margin-top: 50px; font-size: 18px; color:#404040;">
+							<a href="slide1.html">Click here to begin</a>
+						</div> -->
+
+						<br/>
+						<br/>
+
+				</div>
+
+				<div>
+					<a id="footer" href="about.html">About this visualization</a>
+				</div>
+
+			</div>
+	</div> <!-- end section0 -->
+
+</div>
+
+
+<script type="text/javascript" src="src/fullpage.js"></script>
+<script type="text/javascript" src="src/examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false
+    });
+</script>
+
+</body>
+</html>
